@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Student;
+use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,5 +57,5 @@ Route::get('/courses/create' , function(){
 
 Route::get('/course/{id}/students', function ($id){
     $course= Course::find($id);
-    return $course->students;
+    return $course->student;
 });
