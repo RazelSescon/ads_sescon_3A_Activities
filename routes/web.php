@@ -33,9 +33,28 @@ Route::get('/students', function () {
     return $students;
 });
 
+Route::get('/students/update', function () {
+$student = student::where('email', 'johndoe@example.com')->first();
+$student->email = 'john.doe@newmail.com';
+$student->age = 23; //Update age as well
+$student->save();
+return 'Student Updated!';
+});
+
 Route::get('/students/delete', function () {
     $student=Student::where('email', 'john.doe@newmail.com')->first();
     $student->delete();
     return 'Student Deleted!';
 });
 
+Route::get('/courses/create' , function(){
+    $course = new Course();
+    $course->course_name= 'Introduction to Databases';
+    $course->save();
+    return 'Course Created!';
+});
+
+Route::get('/course/{id}/students', function ($id){
+    $course= Course::find($id);
+    return $course->students;
+});
